@@ -120,3 +120,22 @@
 - 그러면 URL 요청이 필요 => Controller에 GetMapping 작성
 
 * @PathVariable은 URL 요청으로 들어온 전달값을 컨트롤러의 매개변수로 가져오는 어노테이션
+
+5.2.2 데이터 조회해 출력하기
+1. id를 조회해 데이터 가져오기
+1-1) DB에서 데이터를 가져오는 주체는 리파지터리임. 리파지터리의 구현 객체는 @Autowired 어노테이션으로 주입받았음
+1-2) findById()는 JPA의 CrudRepository가 제공하는 메소드로, 특정 엔티티의 id값을 기준으로 데이터를 찾아 Optional 타입으로 반환함
+1-3) 찾은 데이터를 Article 타입의 articleEntity 변수에 저장
+1-4) articleRepository가 findById(id)로 찾은 값을 반환할 때 반환형이 Article이 아니라서 생기는 문제
+반환형은 Oprional<Article>임
+
+* orElse(null) : id값으로 데이터를 찾을 때 해당 id 값이 없으면 null을 반환하라는 뜻
+데이터를 조회한 결과, 값이 있으면 articleEntity 변수에 값을 넣고 없으면 null을 저장하는 것임
+
+2. 모델에 데이터 등록하기
+2-1) 데이터를 모델에 등록하는 이유는 MVC 패턴에 따라 조회한 데이터를 뷰 페이지에서 사용하기 위해서임
+2-2) 모델을 사용하기 위해 메서드의 매개변수로 model 객체를 받아옴
+2-3) 모델에 데이터를 등록할 때는 addAttribute() 사용
+model.addAttribute(String name, Object value);    // name이라는 이름으로 value 객체 추가
+3. 뷰 페이지 반환하기
+return "articles/show";
