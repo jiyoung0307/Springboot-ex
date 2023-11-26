@@ -1,14 +1,15 @@
 {{>layouts/header}}
-<!--입력 폼 작성-->
-<form>
+
+<form class="container" action="/articles/create" method="post">
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">제목</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <label class="form-label">제목</label>
+        <input type="text" class="form-control" name="title">
     </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">내용</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
+        <label class="form-label">내용</label>
+        <textarea class="form-control" rows="3" name="content"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
 {{>layouts/footer}}
