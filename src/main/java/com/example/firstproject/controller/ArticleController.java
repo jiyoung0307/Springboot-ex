@@ -21,16 +21,13 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/create")
-    public String createArticle(ArticleFormDTO formDTO) {                    /** 폼 데이터를 DTO로 받기 */
-//        System.out.println("formDTO.toString() ==> " + formDTO.toString());  /** DTO에 폼 데이터가 잘 담겼는지 확인*/
+    public String createArticle(ArticleFormDTO formDTO) {
         log.info(formDTO.toString());
-//         1. DTO를 엔티티로 변환
+
         Article article = formDTO.toEntity();
-//        System.out.println("DTO가 엔티티로 잘 변환되는지 확인 ==> " + article.toString());
         log.info(article.toString());
-//         2. 리파지터리로 엔티티를 DB에 저장
+
         Article saved = articleRepository.save(article);
-//        System.out.println("article이 DB에 잘 저장되는지 확인 ==> " + saved.toString());
         log.info(saved.toString());
         return "";
     }
