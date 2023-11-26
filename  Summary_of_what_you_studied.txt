@@ -115,3 +115,8 @@
 1) save()는 저장된 엔티티를 반환하므로 Article 타입의 saved라는 객체에 받아옴
 2) 필드 선언부에 ArticleRepository 타입의 articleRepository 객체를 선언함
 
+5.2.1 URL 요청 받기
+- DB에 저장한 데이터를 웹 페이지에서 보려면 해당 출력 페이지에 접속해야 함
+- 그러면 URL 요청이 필요 => Controller에 GetMapping 작성
+
+* @PathVariable은 URL 요청으로 들어온 전달값을 컨트롤러의 매개변수로 가져오는 어노테이션

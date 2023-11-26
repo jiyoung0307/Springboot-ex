@@ -7,13 +7,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
 @Controller
 public class ArticleController {
-    @Autowired  // 스프링 부트가 미리 생성해 놓은 리파지토리 객체 주입(DI)
-    private ArticleRepository articleRepository;        /** articleRepository 선언 */
+    @Autowired
+    private ArticleRepository articleRepository;
 
     @GetMapping("/articles/new")
     public String newArticleForm() {
@@ -29,6 +30,12 @@ public class ArticleController {
 
         Article saved = articleRepository.save(article);
         log.info(saved.toString());
+        return "";
+    }
+
+    @GetMapping("/articles/{id}")
+    public String show(@PathVariable("id") Long id) {     // 매개변수로 id 받아오기
+        log.info("id ==> " + id);   // id를 잘 받았는지 확인하는 로그 찍기
         return "";
     }
 
