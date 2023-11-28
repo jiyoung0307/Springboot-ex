@@ -11,11 +11,15 @@ import lombok.ToString;
 @Data
 @ToString
 public class ArticleFormDTO {
+    private Long id;
     private String title;
     private String content;
 
+    /**
+     * DTO를 엔티티로 변환하는 메서드
+     * @return
+     */
     public Article toEntity() {
-//        DTO 객체를 엔티티로 변환
-        return new Article(null, title, content);   // Article 클래스의 생성자 형식에 맞게 작성
+        return new Article(id, title, content);
     }
 }
