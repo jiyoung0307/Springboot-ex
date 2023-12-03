@@ -99,6 +99,7 @@ public class ArticleController {
         return "articles/edit";
     }
 
+
     /**
      * 수정 데이터 받아오기
      *
@@ -115,11 +116,28 @@ public class ArticleController {
 //        2-1. 기존 데이터 값을 갱신하기
         Article target = articleRepository.findById(articleEntity.getId()).orElse(null);
 //        2-2. 기존 데이터 값을 갱신하기
-        if(target != null) {
+        if (target != null) {
             articleRepository.save(articleEntity);  // 엔티티를 DB에 저장(갱신)
         }
 //        3. 수정 결과 페이지로 리다이렉트하기
         return "redirect:/articles/" + articleEntity.getId();
+    }
+
+    /**
+     * 삭제하기
+     */
+    @GetMapping("/articles/{id}/delete")
+    public String delete(@PathVariable("id") Long id) {   // id를 매개변수로 가져오기
+        log.info("삭제 요청이 들어왔다!!");
+//        1. 삭제할 대상 가져오기
+        Article target = articleRepository.findById(id).orElse(null);   // 데이터 찾기
+        log.info("target.toString() ==> " + target.toString());    // target에 데이터가 있는지 확인하는 로그 찍기
+//        2. 대상 엔티티 삭제하기
+        if(target != null) {    // 삭제할 대상이 있는지 확인
+            articleRepository.delete(target);   // delete() 메서드로 대상 삭제
+        }
+//        3. 결과 페이지로 리다이렉트하기56
+        return "redirect:/articles";
     }
 
 }
