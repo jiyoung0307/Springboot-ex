@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,16 +128,17 @@ public class ArticleController {
      * 삭제하기
      */
     @GetMapping("/articles/{id}/delete")
-    public String delete(@PathVariable("id") Long id) {   // id를 매개변수로 가져오기
+    public String delete(@PathVariable("id") Long id, RedirectAttributes rttr) {
         log.info("삭제 요청이 들어왔다!!");
 //        1. 삭제할 대상 가져오기
-        Article target = articleRepository.findById(id).orElse(null);   // 데이터 찾기
-        log.info("target.toString() ==> " + target.toString());    // target에 데이터가 있는지 확인하는 로그 찍기
+        Article target = articleRepository.findById(id).orElse(null);
+        log.info("target.toString() ==> " + target.toString());
 //        2. 대상 엔티티 삭제하기
-        if(target != null) {    // 삭제할 대상이 있는지 확인
-            articleRepository.delete(target);   // delete() 메서드로 대상 삭제
+        if(target != null) {
+            articleRepository.delete(target);
+            rttr.addFlashAttribute("msg", "삭제되었습니다!!");
         }
-//        3. 결과 페이지로 리다이렉트하기56
+//        3. 결과 페이지로 리다이렉트하기
         return "redirect:/articles";
     }
 
