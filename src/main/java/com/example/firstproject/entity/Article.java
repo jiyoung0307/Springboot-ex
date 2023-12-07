@@ -11,9 +11,8 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor  // 기본 생성자 추가 어노테이션
-@ToString
-@Entity
 @Data
+@Entity
 public class Article {
     @Id
     @GeneratedValue
