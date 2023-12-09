@@ -24,7 +24,7 @@ public class ArticleController {
     private ArticleRepository articleRepository;
 
     /**
-     * 새 글작성하기
+     * 새 글작성하기 화면 이동
      *
      * @return
      */
