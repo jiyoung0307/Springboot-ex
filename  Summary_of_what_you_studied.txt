@@ -114,3 +114,25 @@ DELETE
 3. 삭제가 완료되면 클라이언트를 결과 페이지로 리다이렉트
 3-1. 결과 페이지로 리다이렉트할 때 클라이언트에 삭제 완료 메시지 띄워주면 good.
 이를 위한 클래스가 RedirectAttributes 객체의 addFlashAttribute()메서드는 리다이레트된 페이지에서 사용할 일회성 데이터를 등록할 수 있은
+------------------------------------------------------------------------------------
+REST API
+: 서버의 자원을 클라이언트에 구애받지 않고 사용할 수 있게 하는 설계 방식,
+HTTP 요청에 대한 응답으로 서버의 자원을 반환함
+특정 기기에 종속되지 않도록 모든 기기에서 통용될 수 있는 데이터를 반환
+
+REST CONTROLLER
+: REST API로 설계된 URL 요청을 받아 처리하는 컨트롤러. 일부 컨트롤러가 뷰 페이지를 반환한다면 REST 컨트롤러는 JSON이나 텍스트 같은 데이터 반환
+@GetMapping
+@PostMapping
+@PatchMapping
+@DeleteMapping
+
+ResponseEntity
+REST 컨트롤러의 반환형, 즉, REST API의 응답을 위해 사용하는 클래스
+REST API 요청을 받아 응답할 때 이 클래스에 HTTP 상태 코드, 헤더, 본문을 실어 보낼 수 있음
+
+HttpStatus
+HTTP 상태 코드를 관리하는 클래스로, 다양한 Enum 타입과 관련한 메서드를 가짐
+200 - HttpStatus.OK
+201 - HttpStatus.CREATED
+400 - HttpStatus.BAD_REQUEST
