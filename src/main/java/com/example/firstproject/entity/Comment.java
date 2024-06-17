@@ -20,10 +20,10 @@ public class Comment {
     @JoinColumn(name = "article_id")    // 외래키 생성, Article 엔티티의 기본키(id)와 매핑
     private Article article; // 해당 댓글의 부모 게시글
 
-    @Column
+    @Column     // 해당 필드를 테이블의 속성으로 매핑
     private String nickname; //댓글을 단 사람
 
-    @Column
+    @Column     // 해당 필드를 테이블의 속성으로 매핑
     private String body;    //댓글 본문
 
 }
